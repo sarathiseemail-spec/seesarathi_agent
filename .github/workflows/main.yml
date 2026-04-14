@@ -30,4 +30,11 @@ jobs:
         env:
           FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-        run: npm start
+        run: timeout 60 npm start || true
+
+      # Step 5: Upload QR Code
+      - name: Upload QR Code
+        uses: actions/upload-artifact@v4
+        with:
+          name: whatsapp-qr
+          path: qr-code.png
