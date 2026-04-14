@@ -1,0 +1,33 @@
+name: seesarathi_agent
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs automatically every 5 hours
+    - cron: "0 */5 * * *"
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set Up Node.js
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Step 3: Install Dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Run Seesarathi Agent
+      - name: Run seesarathi_agent
+        env:
+          FIREBASE_URL: ${{ secrets.FIREBASE_URL }}
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+        run: npm start
