@@ -1,0 +1,26 @@
+{
+  "name": "seesarthi_agent",
+  "version": "1.0.0",
+  "description": "SEE Sarthi Agent - A WhatsApp bot to assist SEE students with study materials, guidance, and exam preparation.",
+  "main": "index.js",
+  "author": "SEE Sarthi Team",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "SEE",
+    "education",
+    "whatsapp-bot",
+    "seesarthi",
+    "study-assistant",
+    "nepal",
+    "baileys"
+  ],
+  "dependencies": {
+    "@whiskeysockets/baileys": "6.6.0",
+    "qrcode-terminal": "^0.12.0",
+    "pino": "^8.19.0"
+  }
+}
