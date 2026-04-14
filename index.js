@@ -1,5 +1,5 @@
 const { default: makeWASocket, useMultiFileAuthState, DisconnectReason, fetchLatestBaileysVersion } = require('@whiskeysockets/baileys');
-const qrcode = require('qrcode-terminal');
+const QRCode = require('qrcode');
 const pino = require('pino');
 
 // 🔐 SECURE FIREBASE URL FROM ENVIRONMENT VARIABLES
@@ -49,9 +49,11 @@ async function startBot() {
         const { connection, lastDisconnect, qr } = update;
 
         if (qr) {
-            console.clear();
-            console.log('\n📱 Scan the QR Code to connect Seesarathi Agent\n');
-            qrcode.generate(qr, { small: true });
+            console.log('📱 Saving QR Code as image...');
+            QRCode.toFile('./qr-code.png', qr, function(err) {
+                if (err) console.log(err);
+                console.log('✅ QR Code saved as qr-code.png!');
+            });
         }
 
         if (connection === 'open') {
